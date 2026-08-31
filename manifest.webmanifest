@@ -1,0 +1,29 @@
+{
+  "name": "A Place for Recovery",
+  "short_name": "Recovery",
+  "description": "Get the apps: Anchorpoint, Groundwork, and God's Corner.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#16211e",
+  "theme_color": "#16211e",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
