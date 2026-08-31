@@ -114,19 +114,22 @@
     gap:16px;
   }
 
-  .card{
-    display:block;
+  .card-wrap{
     background:var(--bg-panel);
     border:1px solid var(--line);
     border-radius:14px;
     padding:26px 24px;
-    text-decoration:none;
     transition:border-color 0.2s ease, transform 0.2s ease;
   }
 
-  .card:hover, .card:focus-visible{
+  .card-wrap:hover, .card-wrap:focus-within{
     border-color:var(--accent);
     transform:translateY(-1px);
+  }
+
+  .card{
+    display:block;
+    text-decoration:none;
   }
 
   .card:focus-visible{
@@ -134,9 +137,9 @@
     outline-offset:3px;
   }
 
-  .card--anchorpoint{ --accent:var(--dusk); }
-  .card--groundwork{  --accent:var(--sage); }
-  .card--faith{       --accent:var(--ember); }
+  .card-wrap--anchorpoint{ --accent:var(--dusk); }
+  .card-wrap--groundwork{  --accent:var(--sage); }
+  .card-wrap--faith{       --accent:var(--ember); }
 
   .card-top{
     display:flex;
@@ -180,6 +183,91 @@
 
   .open svg{ width:12px; height:12px; }
 
+  /* ---------- Install instructions ---------- */
+
+  .install{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+
+  .install-toggle{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:none;
+    border:none;
+    padding:0;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+  }
+
+  .install-toggle:hover, .install-toggle:focus-visible{ color:var(--ink); }
+
+  .install-toggle svg{
+    width:10px;
+    height:10px;
+    transition:transform 0.2s ease;
+  }
+
+  .install-toggle[aria-expanded="true"] svg{ transform:rotate(180deg); }
+
+  .install-panel{
+    margin-top:14px;
+  }
+
+  .install-panel[hidden]{ display:none; }
+
+  .os-tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:12px;
+  }
+
+  .os-tab{
+    font-family:'Work Sans', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:var(--muted);
+    background:rgba(238,230,215,0.05);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 14px;
+    cursor:pointer;
+  }
+
+  .os-tab[aria-selected="true"]{
+    color:var(--bg);
+    background:var(--accent);
+    border-color:var(--accent);
+  }
+
+  .steps{
+    margin:0;
+    padding-left:20px;
+    color:var(--ink);
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .steps[hidden]{ display:none; }
+
+  .steps li{ margin-bottom:6px; }
+  .steps li:last-child{ margin-bottom:0; }
+
+  .steps kbd{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    background:rgba(238,230,215,0.08);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1px 6px;
+  }
+
   /* ---------- Footer ---------- */
 
   footer{
@@ -221,38 +309,116 @@
 
   <section class="cards">
 
-    <a class="card card--anchorpoint" href="https://sdangler99-cloud.github.io/Anchorpoint-recovery-main" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="mark"></span>
-        <h2>Anchorpoint</h2>
+    <div class="card-wrap card-wrap--anchorpoint">
+      <a class="card" href="https://sdangler99-cloud.github.io/Anchorpoint-recovery-main" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="mark"></span>
+          <h2>Anchorpoint</h2>
+        </div>
+        <p>Track your sobriety, write down what you're grateful for, and reflect before bed.</p>
+        <span class="open">Open Anchorpoint
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </span>
+      </a>
+      <div class="install">
+        <button class="install-toggle" type="button" aria-expanded="false" aria-controls="install-anchorpoint">
+          Add Anchorpoint to your phone
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="install-panel" id="install-anchorpoint" hidden>
+          <div class="os-tabs" role="tablist">
+            <button class="os-tab" type="button" role="tab" data-os="iphone" aria-selected="true">iPhone</button>
+            <button class="os-tab" type="button" role="tab" data-os="android" aria-selected="false">Android</button>
+          </div>
+          <ol class="steps" data-os-steps="iphone">
+            <li>Tap "Open Anchorpoint" above to open it in Safari.</li>
+            <li>Tap the Share icon in the toolbar.</li>
+            <li>Scroll down and tap <kbd>Add to Home Screen</kbd>.</li>
+            <li>Tap <kbd>Add</kbd> in the top right corner.</li>
+          </ol>
+          <ol class="steps" data-os-steps="android" hidden>
+            <li>Tap "Open Anchorpoint" above to open it in Chrome.</li>
+            <li>Tap the <kbd>⋮</kbd> menu in the top right.</li>
+            <li>Tap <kbd>Add to Home screen</kbd> (or <kbd>Install app</kbd>).</li>
+            <li>Tap <kbd>Add</kbd> / <kbd>Install</kbd> to confirm.</li>
+          </ol>
+        </div>
       </div>
-      <p>Track your sobriety, write down what you're grateful for, and reflect before bed.</p>
-      <span class="open">Open Anchorpoint
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </span>
-    </a>
+    </div>
 
-    <a class="card card--groundwork" href="https://sdangler99-cloud.github.io/Groundwork-main" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="mark"></span>
-        <h2>Groundwork</h2>
+    <div class="card-wrap card-wrap--groundwork">
+      <a class="card" href="https://sdangler99-cloud.github.io/Groundwork-main" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="mark"></span>
+          <h2>Groundwork</h2>
+        </div>
+        <p>Breathe through a hard moment, work through a grounding exercise, and log what's in your control.</p>
+        <span class="open">Open Groundwork
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </span>
+      </a>
+      <div class="install">
+        <button class="install-toggle" type="button" aria-expanded="false" aria-controls="install-groundwork">
+          Add Groundwork to your phone
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="install-panel" id="install-groundwork" hidden>
+          <div class="os-tabs" role="tablist">
+            <button class="os-tab" type="button" role="tab" data-os="iphone" aria-selected="true">iPhone</button>
+            <button class="os-tab" type="button" role="tab" data-os="android" aria-selected="false">Android</button>
+          </div>
+          <ol class="steps" data-os-steps="iphone">
+            <li>Tap "Open Groundwork" above to open it in Safari.</li>
+            <li>Tap the Share icon in the toolbar.</li>
+            <li>Scroll down and tap <kbd>Add to Home Screen</kbd>.</li>
+            <li>Tap <kbd>Add</kbd> in the top right corner.</li>
+          </ol>
+          <ol class="steps" data-os-steps="android" hidden>
+            <li>Tap "Open Groundwork" above to open it in Chrome.</li>
+            <li>Tap the <kbd>⋮</kbd> menu in the top right.</li>
+            <li>Tap <kbd>Add to Home screen</kbd> (or <kbd>Install app</kbd>).</li>
+            <li>Tap <kbd>Add</kbd> / <kbd>Install</kbd> to confirm.</li>
+          </ol>
+        </div>
       </div>
-      <p>Breathe through a hard moment, work through a grounding exercise, and log what's in your control.</p>
-      <span class="open">Open Groundwork
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </span>
-    </a>
+    </div>
 
-    <a class="card card--faith" href="https://sdangler99-cloud.github.io/faith-main/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="mark"></span>
-        <h2>God's Corner</h2>
+    <div class="card-wrap card-wrap--faith">
+      <a class="card" href="https://sdangler99-cloud.github.io/faith-main/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="mark"></span>
+          <h2>God's Corner</h2>
+        </div>
+        <p>Read a devotion, journal a prayer, and keep your favorite verses close.</p>
+        <span class="open">Open God's Corner
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </span>
+      </a>
+      <div class="install">
+        <button class="install-toggle" type="button" aria-expanded="false" aria-controls="install-faith">
+          Add God's Corner to your phone
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="install-panel" id="install-faith" hidden>
+          <div class="os-tabs" role="tablist">
+            <button class="os-tab" type="button" role="tab" data-os="iphone" aria-selected="true">iPhone</button>
+            <button class="os-tab" type="button" role="tab" data-os="android" aria-selected="false">Android</button>
+          </div>
+          <ol class="steps" data-os-steps="iphone">
+            <li>Tap "Open God's Corner" above to open it in Safari.</li>
+            <li>Tap the Share icon in the toolbar.</li>
+            <li>Scroll down and tap <kbd>Add to Home Screen</kbd>.</li>
+            <li>Tap <kbd>Add</kbd> in the top right corner.</li>
+          </ol>
+          <ol class="steps" data-os-steps="android" hidden>
+            <li>Tap "Open God's Corner" above to open it in Chrome.</li>
+            <li>Tap the <kbd>⋮</kbd> menu in the top right.</li>
+            <li>Tap <kbd>Add to Home screen</kbd> (or <kbd>Install app</kbd>).</li>
+            <li>Tap <kbd>Add</kbd> / <kbd>Install</kbd> to confirm.</li>
+          </ol>
+        </div>
       </div>
-      <p>Read a devotion, journal a prayer, and keep your favorite verses close.</p>
-      <span class="open">Open God's Corner
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </span>
-    </a>
+    </div>
 
   </section>
 
@@ -261,6 +427,38 @@
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll('.install-toggle').forEach(function(toggle){
+    toggle.addEventListener('click', function(){
+      var panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+    });
+  });
+
+  document.querySelectorAll('.os-tabs').forEach(function(tabs){
+    tabs.addEventListener('click', function(e){
+      var tab = e.target.closest('.os-tab');
+      if (!tab) return;
+      var panel = tabs.closest('.install-panel');
+      tabs.querySelectorAll('.os-tab').forEach(function(t){
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      panel.querySelectorAll('[data-os-steps]').forEach(function(steps){
+        steps.hidden = steps.getAttribute('data-os-steps') !== tab.dataset.os;
+      });
+    });
+  });
+
+  if (/Android/i.test(navigator.userAgent)){
+    document.querySelectorAll('.os-tabs').forEach(function(tabs){
+      var androidTab = tabs.querySelector('.os-tab[data-os="android"]');
+      if (androidTab) androidTab.click();
+    });
+  }
+</script>
 
 </body>
 </html>
